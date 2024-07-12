@@ -7,7 +7,7 @@ echo -e "\nJoey Jr Firmware Updater for FlashGBX\nby Lesserkuma\n"
 echo -e "Note: Please only use this tool with a real Joey Jr.\nDo not connect any other BennVenn devices including the older Joey Gen 3.\n\nPress ENTER to continue."
 read
 
-FIRMWARE_FILE="FIRMWARE.JR"
+FIRMWARE_FILE="$(cd "$(dirname "$0")" && pwd)/FIRMWARE.JR"
 if [[ ! -f $FIRMWARE_FILE ]]; then
     echo "Error: Firmware file $FIRMWARE_FILE not found in same directory.\n"
     exit 1
