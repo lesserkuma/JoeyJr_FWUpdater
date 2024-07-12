@@ -4,10 +4,6 @@
 
 echo -e "\nJoey Jr Firmware Updater for FlashGBX\nby Lesserkuma\n"
 
-sudo -nv >/dev/null 2>&1
-if [[ $? -ne 0 ]]; then
-   echo -e "Warning: This script must be run with root privileges in order to access the raw sectors of your Joey Jr device.\n"
-fi
 echo -e "Note: Please only use this tool with a real Joey Jr.\nDo not connect any other BennVenn devices including the older Joey Gen 3.\n\nPress ENTER to continue."
 read
 
@@ -57,7 +53,12 @@ for device in /dev/rdisk*; do
     fi
 done
 
-# Check if no devices were found
 if [[ $device_found == false ]]; then
-    echo -e "No Joey Jr devices running the Drag'n'Drop firmware were found.\n"
+    echo -e "No Joey Jr devices running the Drag'n'Drop firmware were found."
+    
+    sudo -nv >/dev/null 2>&1
+    if [[ $? -ne 0 ]]; then
+        echo -e "Please try to run this tool again with root privileges."
+    fi
+    echo ""
 fi
