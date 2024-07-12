@@ -4,12 +4,12 @@
 
 echo -e "\nJoey Jr Firmware Updater for FlashGBX\nby Lesserkuma\n"
 
-if [[ $EUID -ne 0 ]]; then
+sudo -nv >/dev/null 2>&1
+if [[ $? -ne 0 ]]; then
    echo -e "Warning: This script must be run with root privileges in order to access the raw sectors of your Joey Jr device.\n"
-else
-   echo -e "Note: Please only use this tool with a real Joey Jr.\nDo not connect any other BennVenn devices including the older Joey Gen 3.\n\nPress ENTER to continue."
-   read
 fi
+echo -e "Note: Please only use this tool with a real Joey Jr.\nDo not connect any other BennVenn devices including the older Joey Gen 3.\n\nPress ENTER to continue."
+read
 
 FIRMWARE_FILE="FIRMWARE.JR"
 if [[ ! -f $FIRMWARE_FILE ]]; then
