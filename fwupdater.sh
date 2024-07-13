@@ -4,7 +4,7 @@
 
 echo -e "\nJoey Jr Firmware Updater for FlashGBX\nby Lesserkuma\n"
 
-echo -e "Note: Please only use this tool with a real Joey Jr.\nDo not connect any other BennVenn devices including the older Joey Gen 3.\n"
+echo -e "Note: Please use this tool with an actual Joey Jr only.\nDo not connect any other BennVenn devices including the older Joey Gen 3.\n"
 
 FIRMWARE_FILE="$(cd "$(dirname "$0")" && pwd)/FIRMWARE.JR"
 if [[ ! -f $FIRMWARE_FILE ]]; then
@@ -34,8 +34,8 @@ for device in /dev/rdisk*; do
             done
 
             if [[ ! -e "$device" ]]; then
-                echo "The firmware update timed out. Please try again."
-                continue
+                echo "\nError: The firmware update timed out. Please try again."
+                break
             fi
 
             echo "Now writing firmware update to your Joey Jr..."
@@ -44,11 +44,12 @@ for device in /dev/rdisk*; do
             sleep 3
 
             if [[ -e "$device" ]]; then
-                echo "The firmware update timed out. Please try again."
-                continue
+                echo "\nError: The firmware update timed out. Please try again."
+                break
             fi
 
-            echo -e "\nFirmware update successfully written to $device!\n"
+            echo -e "\nThe firmware update was successful!\n"
+            break
         fi
     fi
 done
