@@ -1,8 +1,8 @@
 #!/bin/bash
-# Joey Jr Firmware Updater for FlashGBX
+# Joey Jr FlashGBX Firmware Updater for macOS
 # by Lesserkuma
 
-echo -e "\nJoey Jr Firmware Updater for FlashGBX\nby Lesserkuma\n"
+echo -e "\nJoey Jr FlashGBX Firmware Updater for macOS\nby Lesserkuma\n"
 
 echo -e "Note: Please use this tool with an actual Joey Jr only.\nDo not connect any other BennVenn devices including the older Joey Gen 3.\n"
 
