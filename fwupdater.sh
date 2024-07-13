@@ -8,7 +8,7 @@ echo -e "Note: Please use this tool with an actual Joey Jr only.\nDo not connect
 
 FIRMWARE_FILE="$(cd "$(dirname "$0")" && pwd)/FIRMWARE.JR"
 if [[ ! -f $FIRMWARE_FILE ]]; then
-    echo "Error: Firmware file $FIRMWARE_FILE not found in same directory.\n"
+    echo -e "Error: Firmware file $FIRMWARE_FILE not found in same directory.\n"
     exit 1
 fi
 
@@ -18,7 +18,7 @@ for device in /dev/rdisk*; do
         if dd if="$device" bs=512 count=1 2>/dev/null | grep -q "BENNVENN   FAT16   "; then
             device_found=true
             echo -e "A Joey Jr device was found at $device!\nPress ENTER to continue."
-			read
+			cat < /dev/tty > /dev/null
 
             echo "Setting UPDATE mode..."
             printf "UPDATE\0%.0s" {1..250} | dd of="$device" bs=512 seek=$((0x2094A00 / 512)) conv=notrunc 2>/dev/null
@@ -34,7 +34,7 @@ for device in /dev/rdisk*; do
             done
 
             if [[ ! -e "$device" ]]; then
-                echo "\nError: The firmware update timed out. Please try again."
+                echo -e "\nError: The firmware update timed out. Please try again."
                 break
             fi
 
@@ -44,7 +44,7 @@ for device in /dev/rdisk*; do
             sleep 3
 
             if [[ -e "$device" ]]; then
-                echo "\nError: The firmware update timed out. Please try again."
+                echo -e "\nError: The firmware update timed out. Please try again."
                 break
             fi
 
