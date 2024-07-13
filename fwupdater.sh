@@ -18,7 +18,7 @@ for device in /dev/rdisk*; do
         if dd if="$device" bs=512 count=1 2>/dev/null | grep -q "BENNVENN   FAT16   "; then
             device_found=true
             echo -e "A Joey Jr device was found at $device!\nPress ENTER to continue."
-			cat < /dev/tty > /dev/null
+            read </dev/tty
 
             echo "Setting UPDATE mode..."
             printf "UPDATE\0%.0s" {1..250} | dd of="$device" bs=512 seek=$((0x2094A00 / 512)) conv=notrunc 2>/dev/null
