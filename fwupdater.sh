@@ -16,7 +16,7 @@ fi
 device_found=false
 for device in /dev/rdisk*; do
     if [[ $device =~ ^/dev/rdisk[0-9]+$ ]]; then
-        if dd if="$device" bs=512 count=1 2>/dev/null | grep -q "BENNVENN"; then
+        if dd if="$device" bs=512 count=1 2>/dev/null | grep -q "BENNVENN   FAT16   "; then
             device_found=true
             echo "A Joey Jr device was found at $device!"
 
